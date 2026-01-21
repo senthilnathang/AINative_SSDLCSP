@@ -1,7 +1,7 @@
 
   # AI-Native SSDLC Security Platform
 
-  This is a code bundle for AI-Native SSDLC Security Platform. The original project is available at https://www.figma.com/design/lGNQhsEdNNXbhArQm2EYRr/AI-Native-SSDLC-Security-Platform.
+  This is a code bundle for AI-Native SSDLC Security Platform. 
 
   ## Running the code
 
