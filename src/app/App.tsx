@@ -1,35 +1,25 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronLeft, ChevronRight, Home, Download, Loader2 } from 'lucide-react';
-import { TitleSlide } from '@/app/components/slides/TitleSlide';
-import { ProblemStatement } from '@/app/components/slides/ProblemStatement';
-import { VisionSlide } from '@/app/components/slides/VisionSlide';
-import { MasterArchitecture } from '@/app/components/slides/MasterArchitecture';
-import { ThreatModelingSlide } from '@/app/components/slides/ThreatModelingSlide';
-import { SASTSlide } from '@/app/components/slides/SASTSlide';
-import { DASTSlide } from '@/app/components/slides/DASTSlide';
-import { IASTSlide } from '@/app/components/slides/IASTSlide';
-import { RedTeamingSlide } from '@/app/components/slides/RedTeamingSlide';
-import { RiskEngineSlide } from '@/app/components/slides/RiskEngineSlide';
-import { ContinuousLearningSlide } from '@/app/components/slides/ContinuousLearningSlide';
-import { GovernanceSlide } from '@/app/components/slides/GovernanceSlide';
-import { ValuePropositionSlide } from '@/app/components/slides/ValuePropositionSlide';
-import { generatePresentation } from '@/app/utils/generatePptx';
+import { PatentTitleSlide } from '@/app/components/slides/patent/PatentTitleSlide';
+import { CoreProblemSlide } from '@/app/components/slides/patent/CoreProblemSlide';
+import { SystemArchitectureSlide } from '@/app/components/slides/patent/SystemArchitectureSlide';
+import { AutonomyRiskSlide } from '@/app/components/slides/patent/AutonomyRiskSlide';
+import { RiskExampleSlide } from '@/app/components/slides/patent/RiskExampleSlide';
+import { ThreatToTestSlide } from '@/app/components/slides/patent/ThreatToTestSlide';
+import { ClosedLoopSlide } from '@/app/components/slides/patent/ClosedLoopSlide';
+import { PatentClaimsSlide } from '@/app/components/slides/patent/PatentClaimsSlide';
+import { generatePatentPresentation } from '@/app/utils/generatePatentPptx';
 
 const slides = [
-  { component: TitleSlide, title: 'Title' },
-  { component: ProblemStatement, title: 'Problem Statement' },
-  { component: VisionSlide, title: 'Vision' },
-  { component: MasterArchitecture, title: 'Architecture' },
-  { component: ThreatModelingSlide, title: 'Threat Modeling' },
-  { component: SASTSlide, title: 'SAST' },
-  { component: DASTSlide, title: 'DAST' },
-  { component: IASTSlide, title: 'IAST' },
-  { component: RedTeamingSlide, title: 'AI Red Teaming' },
-  { component: RiskEngineSlide, title: 'Risk Engine' },
-  { component: ContinuousLearningSlide, title: 'Continuous Learning' },
-  { component: GovernanceSlide, title: 'Governance' },
-  { component: ValuePropositionSlide, title: 'Value Proposition' },
+  { component: PatentTitleSlide, title: 'Title' },
+  { component: CoreProblemSlide, title: 'Core Problem' },
+  { component: SystemArchitectureSlide, title: 'Architecture' },
+  { component: AutonomyRiskSlide, title: 'Autonomy Risk' },
+  { component: RiskExampleSlide, title: 'Risk Example' },
+  { component: ThreatToTestSlide, title: 'Threat-to-Test' },
+  { component: ClosedLoopSlide, title: 'Closed Loop' },
+  { component: PatentClaimsSlide, title: 'Patent Claims' },
 ];
 
 export default function App() {
@@ -52,16 +42,16 @@ export default function App() {
     setCurrentSlide(index);
   };
 
-  const handleDownload = async () => {
+  const handlePatentDownload = async () => {
     if (isGenerating) return;
 
     setIsGenerating(true);
 
     try {
-      await generatePresentation();
+      await generatePatentPresentation();
     } catch (error) {
-      console.error('Error generating presentation:', error);
-      alert('Failed to generate presentation. Please try again.');
+      console.error('Error generating patent presentation:', error);
+      alert('Failed to generate patent presentation. Please try again.');
     } finally {
       setIsGenerating(false);
     }
@@ -154,10 +144,10 @@ export default function App() {
                 <ChevronRight className="w-4 h-4" />
               </button>
               <button
-                onClick={handleDownload}
+                onClick={handlePatentDownload}
                 disabled={isGenerating}
                 className="px-4 py-2 rounded-lg bg-purple-600 hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center gap-2"
-                title="Download as PowerPoint"
+                title="Download Patent PowerPoint"
               >
                 {isGenerating ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
